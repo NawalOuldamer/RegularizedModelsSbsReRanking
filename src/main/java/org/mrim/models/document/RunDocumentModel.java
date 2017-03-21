@@ -61,7 +61,10 @@ public class RunDocumentModel {
 					PATH_STORE_MODEL = args[i+1];
 				}				
 				if(args[i].equals("--output-word2vec-model-path")){
-					TERRIER_DOC_MAP_PATH = args[i+1];
+					WORD2VEC_MODEL_PATH = args[i+1];
+				}
+				if(args[i].equals("--input-path-terrier-intial-results")){
+					PATH_RES_TERRIER_FILE = args[i+1];
 				}
 			}
 			
@@ -73,8 +76,8 @@ public class RunDocumentModel {
 				logger.info("numberOfIterations: "+numberOfIterations);
 				logger.info("INDEX_PATH: "+INDEX_PATH);
 				logger.info("TERRIER_DOC_MAP_PATH: "+TERRIER_DOC_MAP_PATH);
-				logger.info("TERRIER_DOC_MAP_PATH: "+TERRIER_DOC_MAP_PATH);
-				
+				logger.info("WORD2VEC_MODEL_PATH: "+WORD2VEC_MODEL_PATH);
+				logger.info("PATH_RES_TERRIER_FILE: "+PATH_RES_TERRIER_FILE);
 				/**Initialization of the model**/
 				initDocumentModel();
 				/**Estimate the model **/
