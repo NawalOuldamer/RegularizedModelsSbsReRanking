@@ -1,0 +1,173 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.mrim.personranking</groupId>
+	<artifactId>RegularizedModelsSbsReRanking</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<nd4j.backend>nd4j-native</nd4j.backend>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<shadedClassifier>bin</shadedClassifier>
+		<java.version>1.8</java.version>
+		<nd4j.version>0.7.2</nd4j.version>
+		<dl4j.version>0.7.2</dl4j.version>
+		<datavec.version>0.7.2</datavec.version>
+		<arbiter.version>0.7.2</arbiter.version>
+		<rl4j.version>0.7.2</rl4j.version>
+		<guava.version>19.0</guava.version>
+		<logback.version>1.1.7</logback.version>
+		<jfreechart.version>1.0.13</jfreechart.version>
+		<jcommon.version>1.0.23</jcommon.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.nd4j</groupId>
+				<artifactId>nd4j-native</artifactId>
+				<version>${nd4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.nd4j</groupId>
+				<artifactId>nd4j-cuda-7.5</artifactId>
+				<version>${nd4j.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<dependencies>
+		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.7.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>1.7.2</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-math3</artifactId>
+			<version>3.5</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/net.sf.trove4j/trove4j -->
+		<dependency>
+			<groupId>net.sf.trove4j</groupId>
+			<artifactId>trove4j</artifactId>
+			<version>2.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>terrier</groupId>
+			<artifactId>terrier-core</artifactId>
+			<version>4.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-core</artifactId>
+			<version>0.20.2</version>
+		</dependency>
+		<dependency>
+			<!-- This is to include sam-1.108.jar -->
+			<groupId>org.utgenome.thirdparty</groupId>
+			<artifactId>picard</artifactId>
+			<version>1.86.0</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
+		<!-- Used in the RegressionMathFunctions example -->
+		<dependency>
+			<groupId>jfree</groupId>
+			<artifactId>jfreechart</artifactId>
+			<version>${jfreechart.version}</version>
+		</dependency>
+
+		<!-- Arbiter: used for hyperparameter optimization examples -->
+		<dependency>
+			<groupId>org.deeplearning4j</groupId>
+			<artifactId>arbiter-deeplearning4j</artifactId>
+			<version>${arbiter.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.nd4j</groupId>
+			<artifactId>${nd4j.backend}</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.deeplearning4j</groupId>
+			<artifactId>deeplearning4j-nlp</artifactId>
+			<version>${dl4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.deeplearning4j</groupId>
+			<artifactId>deeplearning4j-core</artifactId>
+			<version>${dl4j.version}</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- Set a compiler level -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.5.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<!-- Maven Assembly Plugin -->
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>org.mrim.models.document.RunDocumentModel</mainClass>
+						</manifest>
+					</archive>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase> <!-- packaging phase -->
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+</project>
